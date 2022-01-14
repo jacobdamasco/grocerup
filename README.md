@@ -16,7 +16,7 @@
 ## Future Features
 - Create a personal account that links to your own personal dashboard
 - Create grocery lists with items that can be checked off
-- Add a search bar that filters items in your inventory.
+- Add a search bar that filters items in your inventory
 
 
 ## License
