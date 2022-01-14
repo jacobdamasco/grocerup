@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Update | GrocerUp {% endblock %}
+
+{% block content %}
+
+<div class="container d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <div class="card px-5 py-3">
+        <div class="card-body">
+            <form action="" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Save" class="btn btn-success">
+            </form>
+        </div>
+    </div> 
+</div>
+
+{% endblock %}

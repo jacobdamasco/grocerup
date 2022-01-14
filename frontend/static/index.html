@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} GrocerUp {% endblock %}
+
+{% block content %}
+    <div class="container mx-4 p-1">
+        <nav class="navbar navbar-light bg-white">
+            <a class="navbar-brand " href="#">
+                <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 24 24"><path d="M10 19.5c0 .829-.672 1.5-1.5 1.5s-1.5-.671-1.5-1.5c0-.828.672-1.5 1.5-1.5s1.5.672 1.5 1.5zm3.5-1.5c-.828 0-1.5.671-1.5 1.5s.672 1.5 1.5 1.5 1.5-.671 1.5-1.5c0-.828-.672-1.5-1.5-1.5zm-10.563-5l-2.937-7h16.812l-1.977 7h-11.898zm11.233-5h-11.162l1.259 3h9.056l.847-3zm5.635-5l-3.432 12h-12.597l.839 2h13.239l3.474-12h1.929l.743-2h-4.195z"/></svg>
+                <span class="px-2">GrocerUp</span>
+            </a>
+        </nav>
+        <div class="row p-5">
+            <div class="col-7 py-5 px-1 display-5">
+                <p class="fw-reg pb-3">List what’s in your fridge and pantry right now and what you currently need to restock on.</p>
+                <a href="/dashboard" class="btn rounded-pill green px-5 py-2 font-20 white-font">Get Started</a>
+            </div>
+            <div class="col-5 mb-0 p-0">
+                <img src="{% static 'images/bfast_plate.png'%}" alt="Breakfast" width="650" height="375">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                One
+            </div>
+            <div class="col py-5">
+                <p class="text-end fs-3 lh-sm fw-reg">Easily add grocery lists for different stores all in one spot.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,17 @@
+* { font-family: 'Quicksand', sans-serif; }
+
+.fw-reg { font-weight: 400; }
+
+.fw-med { font-weight: 600;}
+
+.green { background: #5DBB63; }
+
+.gray { background:#EEEEEE; }
+
+.light-gray { background: #EEEEEE}
+
+.white-font { color: white; }
+
+.font-20 { font-size: 1.25rem;}
+
+.card-main { border-radius: 10px;}
