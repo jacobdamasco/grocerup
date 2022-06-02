@@ -6,7 +6,7 @@
 
 
 ## Demos
-
+It currently runs on local host. Actual site hosting in the works. See below for demos.
 
 ## Features
 - Add items to your fridge, freezer, or pantry inventory
