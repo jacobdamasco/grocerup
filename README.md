@@ -1,4 +1,4 @@
-# GrocerUp
+# Grocerup
 
 <a href="https://img.shields.io/badge/status-running-green"></a>
 
