@@ -15,3 +15,8 @@
 .font-20 { font-size: 1.25rem;}
 
 .card-main { border-radius: 10px;}
+
+.nav>li>a:hover, .nav>li>a:active {
+    color: #000 !important;
+    font-weight: 600;
+}
