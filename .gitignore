@@ -4,8 +4,8 @@
 *.pyc
 __pycache__
 db.sqlite3
+.DS_Store
 media
-grocerup/settings.py
 
 # Backup files # 
 *.bak 
