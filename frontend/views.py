@@ -69,3 +69,7 @@ def deleteItem(request, pk):
 
     context = {'item': item}
     return render(request, "delete_item.html", context)
+
+def groceryLists(request):
+    context = {}
+    return render(request, "grocery_lists.html", context)
