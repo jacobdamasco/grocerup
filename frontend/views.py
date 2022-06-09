@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect
-from .forms import ItemForm
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from .forms import ItemForm, CreateUserForm
 from .models import Item
 
 # Helper methods
 def isEmpty(place):
-    numItems = place.count()
+    numItems = place.count() 
     if numItems == 0:
         return True
     else:
@@ -15,6 +18,26 @@ def isEmpty(place):
 def index(request):
     context = {}
     return render(request, "index.html", context)
+
+def register(request):
+    form = CreateUserForm()
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Account created. Login above.')
+            return redirect('login')
+
+    context = {'form': form,}
+    return render(request, 'register.html', context)
+
+def loginPage(request):
+    if request.method == "POST":
+        request.POST.get('username')
+        request.POST.get('password')
+    context = {}
+    return render(request, 'login.html', context)
 
 def dashboard(request):
     items = Item.objects

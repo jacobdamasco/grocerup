@@ -1,6 +1,13 @@
 * { font-family: 'Quicksand', sans-serif; }
+input { 
+    border-width: 1px;
+    border-color: #000;
+    border-radius: 5px;
+}
 
 .fw-reg { font-weight: 400; }
+
+.fw-semi-bold { font-weight: 500;}
 
 .fw-med { font-weight: 600;}
 
@@ -10,7 +17,11 @@
 
 .light-gray { background: #EEEEEE}
 
+.really-light-gray { background: #FEFEFE;}
+
 .white-font { color: white; }
+
+.black-font { color: #000 !important; }
 
 .font-20 { font-size: 1.25rem;}
 

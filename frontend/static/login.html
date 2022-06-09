@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %} Login | Grocerup {% endblock %}
+
+{% block content %}
+
+<div class="container d-flex flex-column min-vh-100 justify-content-center align-items-center">
+    <div class="card px-5 py-3 really-light-gray">
+        <div class="card-body">
+            <h4 class="pb-4"><strong>Login</strong></h4>
+            <form action="" method="POST">
+
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="inputUser" class="form-label fw-semi-bold">Username</label>
+                    <input type="text" class="form-control" name="username" id="inputUser" placeholder="Username">
+                </div>
+                <div class="mb-3">
+                    <label for="inputPassword" class="form-label fw-semi-bold">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+                </div>
+                <input type="submit" value="Login" class="btn btn-success">
+              </form>
+
+            <ul class="list-group py-3">
+                {% for message in messages %}
+                <li class="list-group-item border-0 bg-light fw-med">{{message}}</li>
+                {% endfor %}
+            </ul>
+
+            <p class="pt-3">Don't have an account yet? <a href="{% url 'register' %}">Sign Up</a></p>
+        </div>
+    </div> 
+</div>
+
+{% endblock %}
