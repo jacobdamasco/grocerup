@@ -12,4 +12,4 @@ class ItemForm(ModelForm):
 class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('username', 'password1', 'password2', 'first_name',)
+        fields = ('first_name', 'username', 'password1', 'password2',)
