@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 from .forms import ItemForm, CreateUserForm
 from .models import Item
 
@@ -19,7 +20,11 @@ def index(request):
     context = {}
     return render(request, "index.html", context)
 
+
 def register(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')
+
     form = CreateUserForm()
 
     if request.method == 'POST':
@@ -32,19 +37,37 @@ def register(request):
     context = {'form': form,}
     return render(request, 'register.html', context)
 
+
 def loginPage(request):
+    if request.user.is_authenticated:
+        return redirect('dashboard')
     if request.method == "POST":
-        request.POST.get('username')
-        request.POST.get('password')
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            login(request, user)
+            return redirect('dashboard')
+        else:
+            messages.info(request, "Username and/or password is incorrect.")
+    
     context = {}
     return render(request, 'login.html', context)
 
+
+def logoutUser(request):
+    logout(request)
+    return redirect('login')
+
+
+@login_required(login_url='login')
 def dashboard(request):
     items = Item.objects
     fridge = items.filter(place='Fridge')
     freezer = items.filter(place='Freezer')
     pantry = items.filter(place='Pantry')
-    
+
     emptyFridge = isEmpty(fridge)
     emptyFreezer = isEmpty(freezer)
     emptyPantry = isEmpty(pantry)
@@ -61,6 +84,8 @@ def dashboard(request):
 
     return render(request, "dashboard.html", context)
 
+
+@login_required(login_url='login')
 def itemsForm(request):
     form = ItemForm()
     if request.method == 'POST':
@@ -72,6 +97,8 @@ def itemsForm(request):
     context = {'form': form}
     return render(request, "item_form.html", context)
 
+
+@login_required(login_url='login')
 def updateItem(request, pk):
     item = Item.objects.get(id=pk)
     form = ItemForm(instance=item)
@@ -84,6 +111,8 @@ def updateItem(request, pk):
     context = {'form': form}
     return render(request, "update_item.html", context)
 
+
+@login_required(login_url='login')
 def deleteItem(request, pk):
     item = Item.objects.get(id=pk)
     if request.method == "POST":
@@ -93,6 +122,8 @@ def deleteItem(request, pk):
     context = {'item': item}
     return render(request, "delete_item.html", context)
 
+
+@login_required(login_url='login')
 def groceryLists(request):
     context = {}
     return render(request, "grocery_lists.html", context)
