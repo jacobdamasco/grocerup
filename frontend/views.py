@@ -5,10 +5,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from .forms import ItemForm, CreateUserForm
 from .models import Item
+from .decorator import unauth_user
 
 # Helper methods
 def isEmpty(place):
-    numItems = place.count() 
+    numItems = place.count()
     if numItems == 0:
         return True
     else:
@@ -20,11 +21,8 @@ def index(request):
     context = {}
     return render(request, "index.html", context)
 
-
+@unauth_user
 def register(request):
-    if request.user.is_authenticated:
-        return redirect('dashboard')
-
     form = CreateUserForm()
 
     if request.method == 'POST':
@@ -37,10 +35,8 @@ def register(request):
     context = {'form': form,}
     return render(request, 'register.html', context)
 
-
+@unauth_user
 def loginPage(request):
-    if request.user.is_authenticated:
-        return redirect('dashboard')
     if request.method == "POST":
         username = request.POST['username']
         password = request.POST['password']
@@ -51,14 +47,14 @@ def loginPage(request):
             return redirect('dashboard')
         else:
             messages.info(request, "Username and/or password is incorrect.")
-    
+   
     context = {}
     return render(request, 'login.html', context)
 
 
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect('index')
 
 
 @login_required(login_url='login')
